@@ -1,2 +1,2 @@
-# PShape
-Práctica de la asignatura Creando Interfaces de Usuario - ULPGC
+# RevolutionShape
+Creador de figuras en revolución a partir de puntos usando Processing.
