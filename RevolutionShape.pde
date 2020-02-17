@@ -8,16 +8,29 @@ enum State {
 State dimensionState = State.P2D;
 ArrayList<PVector> points;
 PVector shapePosition;
+PVector strokeColor;
+PVector fillColor;
 PShape object3D;
 int multAngle;
 float rotationStep;
+boolean rotateUY, rotateDY, rotateUX, rotateDX;
+boolean noFill;
+
 
 void setup(){
   size(1280,720,P3D);
   points = new ArrayList<PVector>();
   shapePosition = new PVector(width/2, height/2);
   multAngle = 10;
-  rotationStep = 0.2;
+  rotationStep = 0.05;
+  rotateUY = false;
+  rotateDY = false;
+  rotateUX = false;
+  rotateDX = false;
+  noFill = true;
+  
+  strokeColor = new PVector(0,255,0);
+  fillColor = new PVector(255,0,0);
 }
 
 void draw(){
@@ -35,8 +48,29 @@ void draw(){
     }
     
   }else if (dimensionState == State.P3D){
+    if(noFill){
+      object3D.setFill(false);
+    } else {
+      object3D.setFill(color(fillColor.x,fillColor.y,fillColor.z));
+    }
+    object3D.setStroke(color(strokeColor.x,strokeColor.y,strokeColor.z));
     translate(shapePosition.x, shapePosition.y);
     shape(object3D);
+    rotateShape();
+  }
+}
+
+void rotateShape(){
+  if(rotateUY){
+    object3D.rotateX(rotationStep);
+  }else if(rotateDY){
+    object3D.rotateX(-rotationStep);
+  } 
+  
+  if(rotateUX){
+    object3D.rotate(rotationStep, 0, 1, 0);
+  } else if (rotateDX){
+    object3D.rotate(-rotationStep, 0, 1, 0);
   }
 }
 
@@ -79,7 +113,6 @@ void addVertex(ArrayList<PVector> rotated){
 void makeShape(){
   object3D = createShape();
   object3D.beginShape(TRIANGLE_STRIP);
-  object3D.stroke(255, 0, 0);
   double angle = 0;
   while (angle < 360){
     ArrayList<PVector> rotated = rotateLine();
@@ -115,15 +148,29 @@ void keyPressed(){
     setup();
   }
   if(key == 'w' && dimensionState == State.P3D){
-    object3D.rotateX(rotationStep);
+    rotateUY = true;
   } else if(key == 's' && dimensionState == State.P3D){
-    object3D.rotateX(-rotationStep);
+    rotateDY = true;
   }
   
   if(key == 'd' && dimensionState == State.P3D){
-    object3D.rotate(rotationStep, 0, 1, 0);
+    rotateUX = true;
   } else if (key == 'a' && dimensionState == State.P3D){
-    object3D.rotate(-rotationStep, 0, 1, 0);
+    rotateDX = true;
   }
   
+}
+
+void keyReleased(){
+  if(key == 'w' && dimensionState == State.P3D){
+    rotateUY = false;
+  } else if(key == 's' && dimensionState == State.P3D){
+    rotateDY = false;
+  }
+  
+  if(key == 'd' && dimensionState == State.P3D){
+    rotateUX = false;
+  } else if (key == 'a' && dimensionState == State.P3D){
+    rotateDX = false;
+  }
 }
