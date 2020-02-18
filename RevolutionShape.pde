@@ -50,7 +50,7 @@ void draw(){
   setPalette();
   if (dimensionState == State.P2D){
     drawSplitLine();
-    drawMenu();
+    drawMenu(); 
     PVector last = null;
     for(PVector p : points){
       circle(p.x + width/2,p.y + height/2,5);

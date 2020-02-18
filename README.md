@@ -1,8 +1,19 @@
 # RevolutionShape
 Creador de figuras en revolución a partir de puntos usando Processing.
 
-## Uso
-El programa dispone de dos pantallas principales, la pantalla de dibujo de puntos y la de visualización de la figura.
-* General: La barra espaciadora reinicia el programa al estado de dibujo inicial.
-* Dibujado: Se dibujan los puntos en la mitad derecha de la pantalla con el click izquierdo del ratón. Para visualizar la figura hay que hacer click derecho.
-* Visualización: Se puede mover la figura con el click izquierdo del ratón.
+## Ejecución
+* Descarga el repositorio
+* Abre el archivo Revolution.pde con *Processing-IDE* (Versión 3.x)
+
+## Funcionamiento
+Aquí puede verse el juego en ejecución:
+![Ejecucion del programa](https://github.com/Danicanarion/Processing-Pong/blob/master/Pong/assets/pong-gif.gif)
+
+## Implementación
+Se permite al usuario definir un plano con tantos puntos como se quiera. Este plano se repite cada 10 grados para generar la figura de revolución.
+Una vez en la pantalla de visualización puede rotarse con WASD para verla desde todos los angulos. También se ofrecen distintas paletas entre las que se ofrecen algunas sin rellenado para poder ver a tráves.
+
+Por último se desarrolla una clase *Tuple* para almacenar en pares los colores de *stroke* y *fill* para cada paleta.
+
+## Referencias
+* [Processing Reference](https://processing.org/reference/)
