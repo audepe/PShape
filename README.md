@@ -6,7 +6,7 @@ Creador de figuras en revolución a partir de puntos usando Processing.
 * Abre el archivo Revolution.pde con *Processing-IDE* (Versión 3.x)
 
 ## Funcionamiento
-Aquí puede verse el juego en ejecución:
+Aquí puede verse el programa en ejecución:
 ![Ejecucion del programa](https://github.com/audepe/RevolutionShape/blob/master/demo.gif)
 
 ## Implementación
