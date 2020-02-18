@@ -25,9 +25,9 @@ void setup(){
   palette = new ArrayList<Tuple>();
   palette.add(new Tuple(new PVector(0,255,0),new PVector(0,0,0)));
   palette.add(new Tuple(new PVector(255,255,255),new PVector(0,0,0)));
-  palette.add(new Tuple(new PVector(102, 179, 255),new PVector(0,0,255)));
-  palette.add(new Tuple(new PVector(255, 92, 51),new PVector(255,0,0)));
-  palette.add(new Tuple(new PVector(255,113,206),new PVector(185,103,255)));
+  palette.add(new Tuple(new PVector(0, 255, 216),new PVector(255, 88, 0)));
+  palette.add(new Tuple(new PVector(255, 0, 0),new PVector(128, 0, 0)));
+  palette.add(new Tuple(new PVector(185,103,255),new PVector(1,205,254)));
   
   colorSel = 0;
   
