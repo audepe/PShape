@@ -6,6 +6,7 @@ enum State {
 }
 
 State dimensionState = State.P2D;
+ArrayList<Tuple> palette;
 ArrayList<PVector> points;
 PVector shapePosition;
 PVector strokeColor;
@@ -14,30 +15,42 @@ PShape object3D;
 int multAngle;
 float rotationStep;
 boolean rotateUY, rotateDY, rotateUX, rotateDX;
-boolean noFill;
-
+int colorSel;
 
 void setup(){
   size(1280,720,P3D);
+  
   points = new ArrayList<PVector>();
+    
+  palette = new ArrayList<Tuple>();
+  palette.add(new Tuple(new PVector(0,255,0),new PVector(0,0,0)));
+  palette.add(new Tuple(new PVector(255,255,255),new PVector(0,0,0)));
+  palette.add(new Tuple(new PVector(102, 179, 255),new PVector(0,0,255)));
+  palette.add(new Tuple(new PVector(255, 92, 51),new PVector(255,0,0)));
+  palette.add(new Tuple(new PVector(255,113,206),new PVector(185,103,255)));
+  
+  colorSel = 0;
+  
   shapePosition = new PVector(width/2, height/2);
   multAngle = 10;
   rotationStep = 0.05;
+  
   rotateUY = false;
   rotateDY = false;
   rotateUX = false;
   rotateDX = false;
-  noFill = true;
   
   strokeColor = new PVector(0,255,0);
   fillColor = new PVector(255,0,0);
+  
 }
 
 void draw(){
   background(0);
+  setPalette();
   if (dimensionState == State.P2D){
     drawSplitLine();
-    
+    drawMenu();
     PVector last = null;
     for(PVector p : points){
       circle(p.x + width/2,p.y + height/2,5);
@@ -48,16 +61,26 @@ void draw(){
     }
     
   }else if (dimensionState == State.P3D){
-    if(noFill){
-      object3D.setFill(false);
-    } else {
-      object3D.setFill(color(fillColor.x,fillColor.y,fillColor.z));
-    }
-    object3D.setStroke(color(strokeColor.x,strokeColor.y,strokeColor.z));
+    setStile();
     translate(shapePosition.x, shapePosition.y);
     shape(object3D);
     rotateShape();
   }
+}
+void setPalette(){
+  Tuple colors = palette.get(colorSel);
+  strokeColor = colors.getStroke();
+  fillColor = colors.getFill();
+}
+
+void setStile(){  
+  if(fillColor.x + fillColor.y + fillColor.z == 0.0){
+    object3D.setFill(false);
+  } else {
+    object3D.setFill(true);
+    object3D.setFill(color(fillColor.x,fillColor.y,fillColor.z));
+  }
+  object3D.setStroke(color(strokeColor.x,strokeColor.y,strokeColor.z));    
 }
 
 void rotateShape(){
@@ -77,6 +100,20 @@ void rotateShape(){
 void drawSplitLine(){
   stroke(255);
   line(width/2,0,width/2,height);
+}
+
+void drawMenu(){
+  fill(strokeColor.x,strokeColor.y,strokeColor.z);
+  textAlign(CENTER);
+  textSize(64);
+  text("RevolutionShape", 325, 125);
+  textSize(37);
+  text("Dibujar puntos: Click Izquierdo", 325, 250);
+  text("Generar figura: Click Derecho", 325, 325);
+  text("Rotar la figura: WASD",325,400);
+  text("Mover la figura: Click Izquierdo",325,475);
+  text("Nueva Figura: Barra Espaciadora",325,550);
+  text("Cambiar Paleta: Q-E",325,625);
 }
 
 PVector rotatePoint(PVector point){
@@ -159,6 +196,13 @@ void keyPressed(){
     rotateDX = true;
   }
   
+  if(key == 'q'){
+    colorSel++;
+    colorSel = colorSel == 5 ? 0 : colorSel;
+  } else if (key == 'e') {
+    colorSel--;
+    colorSel = colorSel == -1 ? 4 : colorSel;
+  }
 }
 
 void keyReleased(){
