@@ -11,7 +11,7 @@ Aquí puede verse el programa en ejecución:
 
 ## Implementación
 Se permite al usuario definir un plano con tantos puntos como se quiera. Este plano se repite cada 10 grados para generar la figura de revolución.
-Una vez en la pantalla de visualización puede rotarse con WASD para verla desde todos los angulos. También se ofrecen distintas paletas entre las que se ofrecen algunas sin rellenado para poder ver a tráves.
+Una vez en la pantalla de visualización puede rotarse con WASD para verla desde todos los angulos. También se ofrecen distintas paletas entre las que se ofrecen algunas sin rellenado para poder ver a través.
 
 Por último se desarrolla una clase *Tuple* para almacenar en pares los colores de *stroke* y *fill* para cada paleta.
 
