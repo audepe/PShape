@@ -7,7 +7,7 @@ Creador de figuras en revolución a partir de puntos usando Processing.
 
 ## Funcionamiento
 Aquí puede verse el juego en ejecución:
-![Ejecucion del programa](https://github.com/Danicanarion/RevolutionShape/blob/master/demo.gif)
+![Ejecucion del programa](https://github.com/audepe/RevolutionShape/blob/master/demo.gif)
 
 ## Implementación
 Se permite al usuario definir un plano con tantos puntos como se quiera. Este plano se repite cada 10 grados para generar la figura de revolución.
